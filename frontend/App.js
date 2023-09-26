@@ -8,9 +8,6 @@ import { useFonts } from 'expo-font';
 const Stack=createNativeStackNavigator();
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    bold : require("./assets/fonts/OpenSans-Italic.ttf"),
-  })
   return (
     <NavigationContainer>
         <Stack.Navigator>
