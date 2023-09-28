@@ -1,9 +1,10 @@
 import React from "react";
-import {ScrollView, Text,TouchableOpacity,View} from "react-native"
+import {Text,TouchableOpacity,View} from "react-native"
 import {SafeAreaView} from "react-native-safe-area-context" 
 import styles from "./newRivals.styles";
 import {Ionicons}  from "@expo/vector-icons"
 import { COLORS } from "../constants";
+import { ProductList } from "../components";
 
 const NewRivals= ({navigation})=>{
 
@@ -19,9 +20,7 @@ const NewRivals= ({navigation})=>{
                     </TouchableOpacity>
                     <Text style={styles.heading}>Products</Text>
                 </View>
-                <ScrollView>
-                    
-                </ScrollView>
+                <ProductList/>
             </View>
         </SafeAreaView>
     )
