@@ -21,6 +21,26 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignContent:"center"
     },
+    productImage:{
+        width:"100%",
+        height:65,
+        borderRadius:SIZES.small,
+        resizeMode: "cover"
+    },
+    textContainer:{
+        flex:1,
+        marginHorizontal:SIZES.medium,
+    },
+    productTitle:{
+        fontWeight:800,
+        fontSize:SIZES.medium,
+        color: COLORS.primary
+    },
+    supplier:{
+        fontSize:SIZES.small+2,
+        color: COLORS.gray,
+        marginTop:3,
+    },
 })
 
 export default styles
