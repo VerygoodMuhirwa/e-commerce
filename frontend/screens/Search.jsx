@@ -6,7 +6,7 @@ import styles from "./search.style"
 import {Feather, Ionicons} from "@expo/vector-icons"
 import { SIZES, COLORS } from "../constants";
 import axios from "axios" 
-import { ProductCardView } from "../components";
+import { ProductCardView, SearchTile } from "../components";
  
 const Search = () =>{
     const [searchData, setSearchData] = useState("")
@@ -51,7 +51,7 @@ const Search = () =>{
                 <FlatList
                     data={searchResults}
                     keyExtractor={(item)=>item._id}
-                    renderItem={({item})=> <ProductCardView item={item}/>}
+                    renderItem={({item})=> <SearchTile item={item}/>}
                 />
             )}
         </SafeAreaView>
