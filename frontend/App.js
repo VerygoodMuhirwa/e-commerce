@@ -1,8 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabNavigation from './navigation/BottomTabNavigation';
-import { Cart, ProductDetails,NewRivals } from './screens';
-import { useFonts } from 'expo-font';
+import { Cart, ProductDetails,NewRivals, Login } from './screens';
 
 
 const Stack=createNativeStackNavigator();
@@ -28,6 +27,11 @@ export default function App() {
           <Stack.Screen
             name='ProductList'
             component={NewRivals}
+            options={{headerShown:false}}
+          />
+          <Stack.Screen
+            name='Login'
+            component={Login}
             options={{headerShown:false}}
           />
         </Stack.Navigator>
