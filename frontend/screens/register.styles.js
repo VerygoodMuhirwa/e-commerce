@@ -7,20 +7,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginHorizontal: 12,
   },
-  Image: {
+  image: {
     width: "90%",
-    height: 350,
+    height: 250,
     resizeMode: "contain",
   },
-  loginTitle: {
+  signInTitle: {
     fontSize: 25,
     fontWeight: "bold",
     color: COLORS.primary,
     marginTop: SIZES.medium,
     alignSelf: "center",
   },
-  loginContainer: {
+  signinContainer: {
     marginHorizontal: 12,
+  },
+  inputTitle: {
+    textAlign: "right",
+    fontSize: SIZES.xSmall,
+    fontWeight: 600,
+    paddingBottom: SIZES.xSmall,
   },
   input: {
     icon1: {
@@ -36,27 +42,16 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.secondary,
     borderRadius: SIZES.small / 2,
   },
-  loginBtn: {
+  signupBtnText: {
+    color: COLORS.lightWhite,
+    fontWeight: "bold",
+  },
+  signupBtn: {
     backgroundColor: COLORS.primary,
     alignItems: "center",
     marginTop: SIZES.small,
     justifyContent: "center",
   },
-  loginBtnText: {
-    color: COLORS.lightWhite,
-    fontWeight: "bold",
-  },
-  inputTitle: {
-    textAlign: "right",
-    fontSize: SIZES.xSmall,
-    fontWeight: 600,
-    paddingBottom: SIZES.xSmall,
-  },
-  register: {
-    marginTop: SIZES.xLarge,
-    alignItems: "center",
-  },
-
 });
 
 export default styles;

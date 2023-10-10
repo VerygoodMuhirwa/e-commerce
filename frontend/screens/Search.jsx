@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Text,
 } from "react-native";
 import styles from "./search.style";
 import { Feather, Ionicons } from "@expo/vector-icons";
@@ -21,7 +20,7 @@ const Search = () => {
     try {
       //http://192.168.0.146:3000/api/products/search/${searchData}
       const response = await axios.get(
-        `http://192.168.1.92:3000/api/products/search/${searchData}`
+        `http://192.168.1.112:3000/api/products/search/${searchData}`
       );
       setSearchResults(response.data);
     } catch (error) {

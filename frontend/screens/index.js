@@ -5,14 +5,16 @@ import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
 import NewRivals from "./NewRivals";
 import Login from "./Login";
-Login
+import Register from "./Register";
+Login;
 
 export {
-    Home,
-    Search,
-    Profile,
-    Cart,
-    ProductDetails,
-    NewRivals,
-    Login
-}
+  Home,
+  Search,
+  Profile,
+  Cart,
+  ProductDetails,
+  NewRivals,
+  Login,
+  Register,
+};
