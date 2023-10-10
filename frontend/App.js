@@ -1,7 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigation from "./navigation/BottomTabNavigation";
-import { Cart, ProductDetails, NewRivals, Login, Register } from "./screens";
+import {
+  Cart,
+  ProductDetails,
+  NewRivals,
+  Login,
+  Register,
+  Favorites,
+} from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +40,11 @@ export default function App() {
         <Stack.Screen
           name="Register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Favorites"
+          component={Favorites}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

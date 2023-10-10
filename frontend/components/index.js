@@ -4,6 +4,7 @@ import ProductCardView from "./products/ProductCardView";
 import SearchTile from "./products/SearchTile";
 import LogedUser from "./user/LogedUser";
 import NotLogedUser from "./user/NotLogedUser";
+import FavoriteTile from "./products/FavoriteTile";
 
 export {
   Welcome,
@@ -12,4 +13,5 @@ export {
   SearchTile,
   LogedUser,
   NotLogedUser,
+  FavoriteTile,
 };

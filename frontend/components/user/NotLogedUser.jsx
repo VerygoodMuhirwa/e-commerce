@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import styles from "./NotLogedUser.styles";
+import styles from "./notLogedUser.styles";
 import { useNavigation } from "@react-navigation/native";
 
 const NotLogedUser = () => {

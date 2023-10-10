@@ -6,7 +6,7 @@ import ProductDetails from "./ProductDetails";
 import NewRivals from "./NewRivals";
 import Login from "./Login";
 import Register from "./Register";
-Login;
+import Favorites from "./Favorites";
 
 export {
   Home,
@@ -17,4 +17,5 @@ export {
   NewRivals,
   Login,
   Register,
+  Favorites,
 };
