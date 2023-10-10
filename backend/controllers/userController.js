@@ -10,6 +10,14 @@ module.exports = {
       res.status(500).json(error);
     }
   },
+  getUser: async (req, res) => {
+    try {
+      const users = await User.find().sort({ createdAt: -1 });
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json("failed to get users");
+    }
+  },
   loginUser: async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
