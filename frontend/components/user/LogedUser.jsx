@@ -1,9 +1,11 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import styles from "./LogedUser.styles";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import styles from "./logedUser.styles";
+import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
 
 const LogedUser = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <View style={styles.cover}>
@@ -23,7 +25,10 @@ const LogedUser = () => {
         </TouchableOpacity>
       </View>
       <View style={{ marginTop: SIZES.small }}>
-        <TouchableOpacity style={styles.list}>
+        <TouchableOpacity
+          style={styles.list}
+          onPress={() => navigation.navigate("Favorites")}
+        >
           <View style={styles.listItem}>
             <Ionicons name="heart-outline" size={24} color={COLORS.gray} />
             <Text style={styles.listItem.text}>Favorites</Text>
@@ -31,7 +36,11 @@ const LogedUser = () => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.list}>
           <View style={styles.listItem}>
-            <Feather name="truck" size={24} color={COLORS.gray} />
+            <MaterialCommunityIcons
+              name="truck-delivery-outline"
+              size={24}
+              color={COLORS.gray}
+            />
             <Text style={styles.listItem.text}>Orders</Text>
           </View>
         </TouchableOpacity>
