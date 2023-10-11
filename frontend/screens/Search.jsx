@@ -18,7 +18,6 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState([]);
   const handleSearch = async () => {
     try {
-      //http://192.168.0.146:3000/api/products/search/${searchData}
       const response = await axios.get(
         `http://192.168.1.112:3000/api/products/search/${searchData}`
       );

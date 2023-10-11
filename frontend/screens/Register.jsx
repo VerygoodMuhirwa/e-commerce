@@ -5,6 +5,7 @@ import { Ionicons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
 import styles from "./register.styles";
 import { TouchableOpacity } from "react-native";
+import axios from "axios";
 
 const Register = ({ navigation }) => {
   const [username, setUserName] = useState("");
@@ -12,6 +13,7 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [location, setLocation] = useState("");
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const [shown, setShown] = useState(true);
 
   const validate = async () => {
@@ -60,6 +62,26 @@ const Register = ({ navigation }) => {
 
   const togglePasswordVisibility = () => {
     setShown(!shown);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://192.168.1.112:3000/api/users/",
+        {
+          username: username,
+          email: email,
+          password: password,
+          location: location,
+        }
+      );
+      console.warn(response.data);
+    } catch ({ response, error }) {
+      setMessage(response.data);
+      setTimeout(() => {
+        setMessage(null);
+      }, 2000);
+    }
   };
   return (
     <SafeAreaView>
@@ -146,10 +168,11 @@ const Register = ({ navigation }) => {
               onPress={togglePasswordVisibility}
             />
           </View>
-          <Text style={{ color: "red" }}>{error}</Text>
+          <Text style={{ color: "red" }}>{error}{message}</Text>
           <TouchableOpacity
             style={{ ...styles.input, ...styles.signupBtn }}
-            onPress={validate}
+            onPress={() => handleSubmit()}
+            disabled={error ? true : false}
           >
             <Text style={styles.signupBtnText}>SIGNUP</Text>
           </TouchableOpacity>

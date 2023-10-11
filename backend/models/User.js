@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema(
     Image: {
       type: String,
       required: true,
-      default: "./uploads/userDefault.pnng",
+      default: "userDefault.png",
     },
   },
   { timestamps: true }
