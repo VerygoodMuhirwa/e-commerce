@@ -11,12 +11,15 @@ import styles from "./login.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import { COLORS } from "../constants";
+import axios from "axios";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [shown, setShown] = useState(true);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const validate = async () => {
     const regex = new RegExp(
@@ -59,6 +62,26 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     validate();
   });
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        "http://192.168.1.112:3000/api/users/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
+      setIsLoading(true);
+    } catch ({ response, error }) {
+      setMessage(response.data);
+      setIsLoading(true);
+      setTimeout(() => {
+        setMessage(null);
+        setIsLoading(false);
+      }, 2000);
+    }
+  };
   return (
     <SafeAreaView>
       <ScrollView>
@@ -115,14 +138,19 @@ const Login = ({ navigation }) => {
                 onPress={togglePasswordVisibility}
               />
             </View>
-            <Text style={{ color: "red" }}>{error}</Text>
+            <Text style={{ color: "red" }}>
+              {error}
+              {message}
+            </Text>
             <TouchableOpacity
               style={{ ...styles.input, ...styles.loginBtn }}
-              onPress={validate}
+              onPress={() => handleSubmit()}
+              disabled={error ? true : false}
             >
               <Text style={styles.loginBtnText}>LOGIN</Text>
             </TouchableOpacity>
           </View>
+          if
           <TouchableOpacity
             onPress={() => navigation.navigate("Register")}
             style={styles.register}
