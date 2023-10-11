@@ -15,6 +15,7 @@ const Register = ({ navigation }) => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [shown, setShown] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const validate = async () => {
     const regex = new RegExp(
@@ -75,11 +76,13 @@ const Register = ({ navigation }) => {
           location: location,
         }
       );
-      console.warn(response.data);
+      setIsLoading(true);
     } catch ({ response, error }) {
       setMessage(response.data);
+      setIsLoading(true);
       setTimeout(() => {
         setMessage(null);
+        setIsLoading(false);
       }, 2000);
     }
   };
@@ -168,7 +171,10 @@ const Register = ({ navigation }) => {
               onPress={togglePasswordVisibility}
             />
           </View>
-          <Text style={{ color: "red" }}>{error}{message}</Text>
+          <Text style={{ color: "red" }}>
+            {error}
+            {message}
+          </Text>
           <TouchableOpacity
             style={{ ...styles.input, ...styles.signupBtn }}
             onPress={() => handleSubmit()}

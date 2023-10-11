@@ -20,17 +20,15 @@ module.exports = {
   },
   loginUser: async (req, res) => {
     try {
-      const email = req.body.email;
-      const password = req.body.password;
-      const userEmail = await User.findOne({ email: email });
+      const userEmail = await User.findOne({ email: req.body.email });
       if (userEmail) {
-        if (await bcrypt.compare(password, userEmail.password)) {
+        if (await bcrypt.compare(req.body.password, userEmail.password)) {
           res.status(200).json("Logged in successfully");
         } else {
-          res.status(200).json("Incorrect Password");
+          res.status(500).json("Invalid Email or Password");
         }
       } else {
-        res.status(200).json("Invalid Email");
+        res.status(500).json("Invalid Email or Password");
       }
     } catch (error) {
       res.status(500).json(error);
