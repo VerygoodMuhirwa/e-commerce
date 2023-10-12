@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, Image, TextInput, ScrollView } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TextInput,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
@@ -66,6 +73,7 @@ const Register = ({ navigation }) => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "http://192.168.1.112:3000/api/users/",
@@ -76,14 +84,14 @@ const Register = ({ navigation }) => {
           location: location,
         }
       );
-      setIsLoading(true);
+      setIsLoading(false);
     } catch ({ response, error }) {
       setMessage(response.data);
-      setIsLoading(true);
       setTimeout(() => {
         setMessage(null);
-        setIsLoading(false);
       }, 2000);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -175,13 +183,17 @@ const Register = ({ navigation }) => {
             {error}
             {message}
           </Text>
-          <TouchableOpacity
-            style={{ ...styles.input, ...styles.signupBtn }}
-            onPress={() => handleSubmit()}
-            disabled={error ? true : false}
-          >
-            <Text style={styles.signupBtnText}>SIGNUP</Text>
-          </TouchableOpacity>
+          {isLoading ? (
+            <ActivityIndicator size={SIZES.xLarge} color={COLORS.primary} />
+          ) : (
+            <TouchableOpacity
+              style={{ ...styles.input, ...styles.signupBtn }}
+              onPress={() => handleSubmit()}
+              disabled={error ? true : false || message ? true : false}
+            >
+              <Text style={styles.signupBtnText}>SIGNUP</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

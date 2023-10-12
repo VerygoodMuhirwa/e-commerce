@@ -147,7 +147,7 @@ const Login = ({ navigation }) => {
               {message}
             </Text>
             {isLoading ? (
-              <ActivityIndicator size={SIZES.large} color={COLORS.primary} />
+              <ActivityIndicator size={SIZES.xLarge} color={COLORS.primary} />
             ) : (
               <TouchableOpacity
                 style={{ ...styles.input, ...styles.loginBtn }}
