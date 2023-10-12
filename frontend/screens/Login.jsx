@@ -6,11 +6,12 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import styles from "./login.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
-import { COLORS } from "../constants";
+import { COLORS, SIZES } from "../constants";
 import axios from "axios";
 
 const Login = ({ navigation }) => {
@@ -64,6 +65,7 @@ const Login = ({ navigation }) => {
   });
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "http://192.168.1.112:3000/api/users/login",
@@ -72,7 +74,7 @@ const Login = ({ navigation }) => {
           password: password,
         }
       );
-      setIsLoading(true);
+      setIsLoading(false);
     } catch ({ response, error }) {
       setMessage(response.data);
       setIsLoading(true);
@@ -80,6 +82,8 @@ const Login = ({ navigation }) => {
         setMessage(null);
         setIsLoading(false);
       }, 2000);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -142,15 +146,19 @@ const Login = ({ navigation }) => {
               {error}
               {message}
             </Text>
-            <TouchableOpacity
-              style={{ ...styles.input, ...styles.loginBtn }}
-              onPress={() => handleSubmit()}
-              disabled={error ? true : false}
-            >
-              <Text style={styles.loginBtnText}>LOGIN</Text>
-            </TouchableOpacity>
+            {isLoading ? (
+              <ActivityIndicator size={SIZES.large} color={COLORS.primary} />
+            ) : (
+              <TouchableOpacity
+                style={{ ...styles.input, ...styles.loginBtn }}
+                onPress={() => handleSubmit()}
+                disabled={error ? true : false || message ? true : false}
+              >
+                <Text style={styles.loginBtnText}>LOGIN</Text>
+              </TouchableOpacity>
+            )}
           </View>
-          if
+
           <TouchableOpacity
             onPress={() => navigation.navigate("Register")}
             style={styles.register}

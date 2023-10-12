@@ -10,7 +10,7 @@ const ProductRow = () => {
   return (
     <View style={styles.container}>
       {isLoading ? (
-        <ActivityIndicator size={SIZES.large} color={COLORS.primary} />
+        <ActivityIndicator size={SIZES.xxLarge} color={COLORS.primary} />
       ) : error ? (
         <Text>Something went wrong!!</Text>
       ) : (
