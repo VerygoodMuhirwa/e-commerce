@@ -5,14 +5,19 @@ module.exports = {
   addUser: async (req, res) => {
     try {
       const password = req.body.password;
+
       if (await User.findOne({ email: req.body.email })) {
         res.status(500).json("The user already exists");
       } else {
-        bcrypt.hash(password, 10).then((hashedPassword) => {
-          const newUser = new User({ ...req.body, password: hashedPassword });
-          newUser.save();
-        });
-        res.status(200).json("The user was successfully added");
+        if (password.length >= 8) {
+          bcrypt.hash(password, 10).then((hashedPassword) => {
+            const newUser = new User({ ...req.body, password: hashedPassword });
+            // newUser.save();
+            res.status(200).json("The user was successfully added");
+          });
+        } else {
+          res.status(500).json("The password is to short");
+        }
       }
     } catch (error) {
       res.status(500).json(error);
