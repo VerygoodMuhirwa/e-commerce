@@ -13,8 +13,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = ({ navigation }) => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [shown, setShown] = useState(true);
@@ -75,6 +77,10 @@ const Login = ({ navigation }) => {
         }
       );
       setIsLoading(false);
+      if (response.status == 200) {
+        const userDEtails  =  await axios.get("https://192.168.1.112/api/users/")
+        navigation.navigate("Profile", {response});
+      }
     } catch ({ response, error }) {
       setMessage(response.data);
       setIsLoading(true);
