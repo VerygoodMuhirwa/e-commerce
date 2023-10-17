@@ -5,14 +5,14 @@ module.exports = {
   addUser: async (req, res) => {
     try {
       const password = req.body.password;
-
       if (await User.findOne({ email: req.body.email })) {
         res.status(500).json("The user already exists");
       } else {
         if (password.length >= 8) {
           bcrypt.hash(password, 10).then((hashedPassword) => {
             const newUser = new User({ ...req.body, password: hashedPassword });
-            // newUser.save();
+
+            newUser.save();
             res.status(200).json("The user was successfully added");
           });
         } else {
@@ -28,7 +28,7 @@ module.exports = {
       const userEmail = await User.findOne({ email: req.body.email });
       if (userEmail) {
         if (await bcrypt.compare(req.body.password, userEmail.password)) {
-          res.status(200).json("Logged in successfully");
+          res.status(200).json(userEmail);
         } else {
           res.status(500).json("Invalid Email or Password");
         }
@@ -37,6 +37,14 @@ module.exports = {
       }
     } catch (error) {
       res.status(500).json(error);
+    }
+  },
+  getOneUser: async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status.json("Failed to get user");
     }
   },
 };

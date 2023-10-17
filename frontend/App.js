@@ -8,6 +8,7 @@ import {
   Login,
   Register,
   Favorites,
+  Profile,
 } from "./screens";
 
 const Stack = createNativeStackNavigator();
@@ -21,7 +22,11 @@ export default function App() {
           component={BottomTabNavigation}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="ProductDetails"
           component={ProductDetails}
@@ -45,6 +50,11 @@ export default function App() {
         <Stack.Screen
           name="Favorites"
           component={Favorites}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

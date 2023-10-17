@@ -16,13 +16,14 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
 const Login = ({ navigation }) => {
-  const navigation = useNavigation();
+  const nav = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [shown, setShown] = useState(true);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState();
 
   const validate = async () => {
     const regex = new RegExp(
@@ -54,7 +55,6 @@ const Login = ({ navigation }) => {
 
       setError(null);
     } catch (error) {
-      // Handle the validation errors here
       setError(error.message);
     }
   };
@@ -70,17 +70,15 @@ const Login = ({ navigation }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://192.168.1.112:3000/api/users/login",
+        "http://192.168.1.134:3000/api/users/login",
         {
           email: email,
           password: password,
         }
       );
       setIsLoading(false);
-      if (response.status == 200) {
-        const userDEtails  =  await axios.get("https://192.168.1.112/api/users/")
-        navigation.navigate("Profile", {response});
-      }
+      setData(response.data._id);
+      nav.navigate("Home", data);
     } catch ({ response, error }) {
       setMessage(response.data);
       setIsLoading(true);
