@@ -11,7 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
   const navigation = useNavigation();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <SafeAreaView>
       <View style={styles.appWrapper}>

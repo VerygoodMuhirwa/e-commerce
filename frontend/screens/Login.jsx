@@ -70,7 +70,7 @@ const Login = ({ navigation }) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://192.168.1.134:3000/api/users/login",
+        "http://192.168.1.112:3000/api/users/login",
         {
           email: email,
           password: password,
