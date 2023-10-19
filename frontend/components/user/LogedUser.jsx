@@ -3,8 +3,16 @@ import styles from "./logedUser.styles";
 import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
+import "react-native-gesture-handler";
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
 
 const LogedUser = () => {
+  const handlePressModel = () => {
+    console.warn("Clicked");
+  };
   const navigation = useNavigation();
   return (
     <View>
@@ -13,7 +21,11 @@ const LogedUser = () => {
           source={require("../../assets/images/space.jpg")}
           style={styles.coverImage}
         />
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={() => handlePressModel()}
+          style={styles.UserImageDetails}
+        >
           <Image
             source={require("../../assets/images/profile.jpeg")}
             style={styles.profileImage}
