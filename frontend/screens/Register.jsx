@@ -83,6 +83,7 @@ const Register = ({ navigation }) => {
           password: password,
           location: location,
         }
+        
       );
       setIsLoading(false);
     } catch ({ response, error }) {

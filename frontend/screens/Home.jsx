@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity, Text, View, ScrollView } from "react-native";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
@@ -8,6 +8,7 @@ import Carousel from "../components/home/Carousel";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/products/ProductRow";
 import { useNavigation } from "@react-navigation/native";
+import * as Location from "expo-location";
 
 const Home = () => {
   const navigation = useNavigation();
